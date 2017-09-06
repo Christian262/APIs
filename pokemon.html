@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Pokemon</title>
+        <style>
+            #wrapper {
+                width: 1000px;
+                height: auto;
+                margin: 0 auto;
+            }
+        </style>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script>
+            $(document).ready(function(){
+            var html_str = "";
+            for(var i = 1; i <= 151; i++){
+                html_str = "<img " + "src=\"http://pokeapi.co/media/img/" + i + ".png\">";
+                $(".images").append(html_str);
+            };
+        })
+
+            var num = $(this).attr("id");
+            var url = 
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="images"></div>
+        </div>
+    </body>
+</html>

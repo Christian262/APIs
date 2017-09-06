@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Pokemon</title>
+    </head>
+    <style>
+        #wrapper {
+            width: 900px;
+            margin: 0 auto;
+        }
+        #left {
+            width: 500px;
+            height: auto;
+            margin: 5px;
+            display: inline-block;
+        }
+        #left h2 {
+            margin-left: 130px;
+        }
+        #right {
+            width: 300px;
+            vertical-align: top;
+            margin: 5px 5px 5px 50px;
+            display: inline-block;
+            position: absolute;
+        }
+        #pokestat {
+            margin: 0 0 0 25px;
+        }
+
+
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+          $(document).ready(function(){
+
+          var html_str = "";
+          for(var i = 1; i <= 151; i++){
+              html_str = "<img id=\"" + i + "\" " + "src=\"http://pokeapi.co/media/img/" + i + ".png\">";
+              $("#pokeselect").append(html_str);
+          };
+
+          $('img').click(function() {
+             var num = $(this).attr('id');
+             var url = "http://pokeapi.co/api/v1/pokemon/"+num;
+             $.get(url, function(res) {
+                 var html_str = '';
+                 html_str += "<h2>"+res.name+"</h2>";
+                 html_str += "<img id=\"" + i + "\" " + "src=\"http://pokeapi.co/media/img/" + i + ".png\"></br>";
+                 html_str += "<h3>Types</h3>";
+                 html_str += '<ul>';
+                 for (var t = 0; t < res.types.length; t++){
+                     html_str += "<li>"+res.types[t].name+"</li>";
+                 }
+                 html_str += "</ul>";
+                 html_str += "<h3>Height</h3>";
+                 html_str += "<p>"+res.height+"</p>";
+                 html_str += "<h3>Weight</h3>";
+                 html_str += "<p>"+res.weight+"</p>";
+                 html_str += "<h3>Attack</h3>";
+                 html_str += "<p>"+res.attack+"</p>";
+                 $("#pokestat").html(html_str);
+             }, "json");
+         });
+      })
+      </script>
+    <body>
+        <div id="wrapper">
+            <div id="left">
+                <h2>Select Your Pokemon!</h2>
+                <div id="pokeselect"></div>
+            </div>
+            <div id="right">
+                <h2>Your Pokemon!</h2>
+                <div id=pokestat></div>
+            </div>
+        </div>
+
+    </body>
+</html>

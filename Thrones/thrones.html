@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Game of Thrones</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('img').click(function() {
+                   var num = $(this).attr('id');
+                   var url = "http://anapioficeandfire.com/api/houses/"+num;
+                   $.get(url, function(res){
+                       var html_str = "";
+                       html_str += "<p>Name: "+res.name+"</p>";
+                       html_str += "<p>Words: "+res.words+"</p>";
+                       html_str += "<p>Title(s): "+res.titles+"</p>";
+                       $("#details").html(html_str);
+                   }, "json");
+               });
+            })
+
+        </script>
+        <style media="screen">
+            #wrapper {
+                width: 1000px;
+                margin: 0 auto;
+            }
+            h1 {
+                text-align: center;
+            }
+            .imgBlock {
+                width: 900px;
+                height: 200px;
+                margin-left: 60px;
+            }
+            img {
+                width: 200px;
+                height: auto;
+                display: inline-block;
+                margin: 20px 10px 10px 10px;
+                vertical-align: top;
+            }
+            #house {
+                width: 400px;
+                margin: 0 0 0 290px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+            <h1>Pic Your Throne</h1>
+            <div class="imgBlock">
+                <img id="15" src="img/baratheon.png" alt=" baratheon pic">
+                <img id="229" src="img/lannister.jpg" alt="lannister house pic">
+                <img id="362" src="img/stark.jpg" alt="stark house pic">
+                <img id="378" src="img/targaryen.jpg" alt="targaryen house pic">
+            </div>
+
+            <div id="house">
+                <h2>House Detes</h2>
+                <div id="details"></div>
+            </div>
+        </div>
+
+    </body>
+</html>
